@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hani Ladies Designer Studio | Aari & Tailoring Classes</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --primary-pink: #FF69B4;       /* Hot Pink */
+            --primary-gold: #FFD700;       /* Gold */
+            --soft-pink: #FFF0F5;          /* Lavender Blush */
+            --whatsapp-green: #25D366;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--primary-gold);
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: #333;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .center-wrap { text-align: center; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            background-color: #1ebc57;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-pink);
+            color: var(--primary-pink);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-pink); }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 90vh;
+            background: linear-gradient(rgba(249, 149, 244, 0.6), rgba(74, 87, 45, 0.6)), url('FLEX_Hani_ladies_designer.jpg');
+            /* REPLACE ABOVE URL with your local image: images/hero-bg.jpg */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: var(--primary-gold);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--soft-pink);
+        }
+
+        .hero-location {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            display: block;
+            opacity: 0.9;
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            padding: 80px 0;
+            background: var(--soft-pink);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            border: 3px solid var(--primary-gold);
+            transition: 0.3s;
+        }
+        
+        .photo-grid img:hover { transform: scale(1.05); }
+
+        /* --- COURSES SECTION --- */
+        #courses { padding: 80px 0; }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-pink);
+        }
+
+        .course-img {
+            height: 200px;
+            background: #ddd;
+            width: 100%;
+        }
+
+        .course-content { padding: 25px; text-align: center; }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .course-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .course-details span { display: block; margin: 5px 0; }
+
+        /* --- SERVICES & PRICING --- */
+        #services {
+            padding: 80px 0;
+            background: var(--soft-pink);
+        }
+
+        .pricing-table {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: 5px solid var(--primary-gold);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 1.1rem;
+        }
+
+        .price-row:last-child { border-bottom: none; }
+        .price-row span:last-child { font-weight: 700; color: var(--primary-pink); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+        }
+        
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- CONTACT SECTION --- */
+        #contact { padding: 80px 0; text-align: center; }
+
+        .contact-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .insta-btn { background: #E1306C; }
+        
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1.1rem; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-box { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Hani Ladies Designer</div>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Hani Ladies Designer Studio</h1>
+            <p>DST Certified | Aari Hand Embroidery | Machine Embroidery | Tailoring Classes</p>
+            
+            <a href="https://wa.me/919345074190?text=Hi,%20I%20want%20to%20book%20a%20class%20or%20place%20an%20order" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> Book Class / Order Now
+            </a>
+            
+            <span class="hero-location"><i class="fas fa-map-marker-alt"></i> 1nd Floor, Jothipuram, Metupalayam Road</span>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="center-wrap">
+                <h2 class="section-title">About Us</h2>
+                <div class="section-subtitle">10+ Years Experience | DST Certified</div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Welcome to Hani Ladies Designer Studio. We specialize in professional ladies designer training and custom blouse stitching. Our goal is to empower women through skill development.</p>
+                    <p>We provide home classes with personal attention to ensure every student masters the art of embroidery and tailoring. Whether you are a beginner or looking to upgrade your skills, we have the right course for you.</p>
+                    <a href="#contact" class="btn btn-outline">Visit Studio</a>
+                </div>
+                <div class="photo-grid">
+                    <img src="https://placehold.co/200x200/FF69B4/white?text=Work+1" alt="Designer Work 1">
+                    <img src="https://placehold.co/200x200/FF69B4/white?text=Work+2" alt="Designer Work 2">
+                    <img src="https://placehold.co/200x200/FF69B4/white?text=Work+3" alt="Designer Work 3">
+                    <img src="https://placehold.co/200x200/FF69B4/white?text=Work+4" alt="Designer Work 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <div class="center-wrap">
+                <h2 class="section-title">Choose Your Course</h2>
+                <div class="section-subtitle">Join Our Batches</div>
+            </div>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <img src="https://placehold.co/400x250/FFD700/333?text=Aari+Embroidery" class="course-img" alt="Aari Work">
+                    <div class="course-content">
+                        <div class="course-title">Aari Hand Embroidery</div>
+                        <div class="course-price">₹5,000</div>
+                        <div class="course-details">
+                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                        </div>
+                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Aari%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://placehold.co/400x250/FFD700/333?text=Machine+Embroidery" class="course-img" alt="Machine Embroidery">
+                    <div class="course-content">
+                        <div class="course-title">Machine Embroidery</div>
+                        <div class="course-price">₹4,000</div>
+                        <div class="course-details">
+                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                        </div>
+                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Machine%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Basic" class="course-img" alt="Tailoring Basic">
+                    <div class="course-content">
+                        <div class="course-title">Tailoring Basic</div>
+                        <div class="course-price">₹5,000</div>
+                        <div class="course-details">
+                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                        </div>
+                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Basic%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Advanced" class="course-img" alt="Tailoring Advanced">
+                    <div class="course-content">
+                        <div class="course-title">Tailoring Advanced</div>
+                        <div class="course-price">₹5,000</div>
+                        <div class="course-details">
+                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                        </div>
+                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Advanced%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="center-wrap">
+                <h2 class="section-title">Blouse Stitching & Works</h2>
+                <div class="section-subtitle">Affordable Professional Pricing</div>
+            </div>
+
+            <div class="pricing-table">
+                <div class="price-row">
+                    <span>Simple Blouse</span>
+                    <span>₹120</span>
+                </div>
+                <div class="price-row">
+                    <span>Lining Blouse</span>
+                    <span>₹250 - ₹300</span>
+                </div>
+                <div class="price-row">
+                    <span>Saree Falls + Edge</span>
+                    <span>₹100</span>
+                </div>
+                <div class="price-row">
+                    <span>Aari Hand Embroidery</span>
+                    <span>Starts from ₹1,500</span>
+                </div>
+            </div>
+
+            <h3 style="text-align:center; color:var(--text-light); margin-top:20px;">Our Latest Works</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://placehold.co/300x300/e91e63/fff?text=Design+1" alt="Design 1"></div>
+                <div class="gallery-item"><img src="https://placehold.co/300x300/9c27b0/fff?text=Design+2" alt="Design 2"></div>
+                <div class="gallery-item"><img src="https://placehold.co/300x300/673ab7/fff?text=Design+3" alt="Design 3"></div>
+                <div class="gallery-item"><img src="https://placehold.co/300x300/3f51b5/fff?text=Design+4" alt="Design 4"></div>
+                <div class="gallery-item"><img src="https://placehold.co/300x300/2196f3/fff?text=Design+5" alt="Design 5"></div>
+                <div class="gallery-item"><img src="https://placehold.co/300x300/00bcd4/fff?text=Design+6" alt="Design 6"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="center-wrap">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="section-subtitle">Visit or Call Us Today</div>
+            </div>
+
+            <div class="contact-box">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <a href="https://wa.me/919345074190" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> +91 93450 74190
+                    </a>
+                    
+                    <a href="https://www.instagram.com/hani_ladies_designers?igsh=MW91YzV4eHF0dW4xcw==" class="social-btn insta-btn" target="_blank">
+                        <i class="fab fa-instagram"></i> Follow on Instagram
+                    </a>
+
+                    <p><strong>Address:</strong><br>
+                    1st Floor, Jothipuram,<br>
+                    Metupalayam Road, Coimbatore.</p>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15662.261274534885!2d76.9536838!3d11.0713788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f7a064115165%3A0x6648753238682976!2sJothipuram%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Hani Ladies Designer Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle Script
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
