@@ -141,7 +141,7 @@
         /* --- HERO SECTION --- */
         #hero {
             height: 90vh;
-            background: linear-gradient(rgba(249, 149, 244, 0.6), rgba(74, 87, 45, 0.6)), url('FLEX_Hani_ladies_designer.jpg');
+            background: linear-gradient(rgba(26, 18, 26, 0.6), rgba(16, 17, 19, 0.6)), url('FLEX_Hani_ladies_designer.jpg');
             /* REPLACE ABOVE URL with your local image: images/hero-bg.jpg */
             background-size: cover;
             background-position: center;
@@ -149,7 +149,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
+            color: rgb(155, 73, 73);
             padding: 20px;
         }
 
@@ -164,14 +164,19 @@
             font-size: 1.5rem;
             margin-bottom: 30px;
             font-weight: 300;
-            color: var(--soft-pink);
+            color: var(--primary-gold);
+            opacity: 10;
         }
 
         .hero-location {
             margin-top: 20px;
             font-size: 1.1rem;
             display: block;
-            opacity: 0.9;
+            opacity: 10;
+            color: var(--primary-gold);
+        }
+        .hero-location i {
+             color: #53b4587a; /* This is the classic WhatsApp/Geo Green */
         }
 
         /* --- ABOUT SECTION --- */
@@ -388,6 +393,64 @@
             .about-grid { grid-template-columns: 1fr; }
             .contact-box { flex-direction: column; }
         }
+        /* --- COUPON SECTION STYLES --- */
+        #coupon {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fff 0%, #FFF0F5 100%);
+            text-align: center;
+        }
+
+        .coupon-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px dashed var(--primary-pink);
+            position: relative;
+        }
+
+        .coupon-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .coupon-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        #coupon-result {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0fff4;
+            border-radius: 10px;
+            border: 1px solid #25D366;
+        }
+
+        .code-display {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin: 10px 0;
+            display: block;
+            border-bottom: 2px dashed #ccc;
+            padding-bottom: 10px;
+        }
+
+        .expiry-text {
+            color: #d32f2f;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -398,6 +461,7 @@
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
+                <li><a href="#coupon    ">Coupon Generator</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="#services">Services</a></li>
@@ -409,13 +473,46 @@
     <section id="hero">
         <div class="container hero-content">
             <h1>Hani Ladies Designer Studio</h1>
-            <p>DST Certified | Aari Hand Embroidery | Machine Embroidery | Tailoring Classes</p>
+            <p>DST Certified | Aari/Hand and Machine Embroidery | Tailoring Classes | Overall Ladies Designer</p>
             
             <a href="https://wa.me/919345074190?text=Hi,%20I%20want%20to%20book%20a%20class%20or%20place%20an%20order" class="btn btn-whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i> Book Class / Order Now
             </a>
             
             <span class="hero-location"><i class="fas fa-map-marker-alt"></i> 1nd Floor, Jothipuram, Metupalayam Road</span>
+        </div>
+    </section>
+
+    <section id="coupon">
+        <div class="container">
+            <div class="center-wrap">
+                <h2 class="section-title">Get 10% OFF</h2>
+                <div class="section-subtitle">Exclusive Monthly Discount</div>
+            </div>
+
+            <div class="coupon-box">
+                <h3>🔥 Generate Your Discount Code</h3>
+                <p style="margin-bottom:20px; color:#666;">Enter your details to get a coupon valid for 7 days on any service!</p>
+                
+                <form id="couponForm">
+                <input type="text" id="custName" class="coupon-input" placeholder="Your Name (Required, min 4 chars)" required minlength="4">
+                <input type="email" id="custEmail" class="coupon-input" placeholder="Your Email (Required)" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <button type="submit" class="btn btn-whatsapp" style="width:100%; border:none; margin-top:10px;">
+                        <i class="fas fa-gift"></i> Generate Coupon
+                    </button>
+                </form>
+
+                <div id="coupon-loading" style="display:none; margin-top:15px; color:var(--primary-pink);">
+                    <i class="fas fa-spinner fa-spin"></i> Generating your code...
+                </div>
+
+                <div id="coupon-result">
+                    <div style="font-size:1.2rem;">🎉 Your Coupon Code:</div>
+                    <span id="finalCode" class="code-display">HANI-XXXX</span>
+                    <p class="expiry-text">Valid until: <span id="expiryDate"></span></p>
+                    <p style="font-size:0.9rem; margin-top:10px;">Take a screenshot or show this message on WhatsApp!</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -428,7 +525,8 @@
             
             <div class="about-grid">
                 <div class="about-text">
-                    <p>Welcome to Hani Ladies Designer Studio. We specialize in professional ladies designer training and custom blouse stitching. Our goal is to empower women through skill development.</p>
+                    <p>Hello I am KRISHNAVENI, certified Domain Skill Trainer(DST) in <a href="https://nirdpr.org.in/rseti/" target="_blank" style="color: blue; text-decoration: underline;">RSETI</a> as both Aari/Hand Embroidery and Tailoring programs. I have been teaching in various institutions since 2012, also I focus on ladies garments designing for the past 20 years.</p>
+                    <p>Welcome to Hani Ladies Designer Studio. We specialize in professional ladies designer training and custom designing. Our goal is to empower women through skill development.</p>
                     <p>We provide home classes with personal attention to ensure every student masters the art of embroidery and tailoring. Whether you are a beginner or looking to upgrade your skills, we have the right course for you.</p>
                     <a href="#contact" class="btn btn-outline">Visit Studio</a>
                 </div>
@@ -595,6 +693,68 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+            });
+        });
+
+        // --- COUPON GENERATOR LOGIC ---
+        const couponForm = document.getElementById('couponForm');
+        const loadingDiv = document.getElementById('coupon-loading');
+        const resultDiv = document.getElementById('coupon-result');
+
+        couponForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page refresh
+
+            const name = document.getElementById('custName').value;
+            const email = document.getElementById('custEmail').value;
+
+            if (name.length < 4) {
+                alert("Please enter your full name (at least 4 characters).");
+                return; // Stop here, do not send to Google Sheet
+            }
+
+            // 2. Strict Email Check (Regex)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address (e.g., name@gmail.com).");
+                return; // Stop here
+            }
+
+            /* --- END OF VALIDATION BLOCK --- */
+            
+            // 1. Generate Random Code
+            const randomChars = Math.random().toString(36).substring(2, 5).toUpperCase();
+            const dateStr = new Date().toLocaleDateString('en-GB').slice(0,5).replace('/','');
+            const couponCode = `HANI-${dateStr}-${randomChars}`;
+
+            // 2. Calculate Expiry (7 days from now)
+            const expiry = new Date();
+            expiry.setDate(expiry.getDate() + 7);
+            const expiryStr = expiry.toLocaleDateString('en-GB');
+
+            // 3. Show Loading
+            couponForm.style.display = 'none';
+            loadingDiv.style.display = 'block';
+
+            // 4. Send Data to Google Sheet (Your Backend)
+            fetch('https://script.google.com/macros/s/AKfycbw5e6lsD0Wy9T2b98YIVvQ63WF4hbF1fqj0_Mw9Jw45pPiYB1DfjzBHbo50Antn3Kjqwg/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    coupon: couponCode
+                })
+            }).then(() => {
+                // 5. Show Result on Success
+                loadingDiv.style.display = 'none';
+                resultDiv.style.display = 'block';
+                document.getElementById('finalCode').innerText = couponCode;
+                document.getElementById('expiryDate').innerText = expiryStr;
+            }).catch(error => {
+                console.error('Error!', error.message);
+                alert("Something went wrong. Please check your internet.");
+                loadingDiv.style.display = 'none';
+                couponForm.style.display = 'block';
             });
         });
     </script>
