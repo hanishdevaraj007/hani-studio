@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hani Admin | Next Visit Coupon</title>
+    <style>
+        body { font-family: sans-serif; background: #222; color: white; padding: 20px; text-align: center; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 5px; border: none; font-size: 1.1rem; }
+        button { width: 100%; padding: 15px; background: #FF69B4; color: white; border: none; font-size: 1.2rem; font-weight: bold; border-radius: 5px; margin-top: 10px; }
+        .result { margin-top: 20px; padding: 20px; background: #333; border: 2px dashed #FFD700; display: none; }
+        .big-code { font-size: 2rem; color: #FFD700; font-weight: bold; display: block; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <h2>👑 Admin Coupon Tool</h2>
+    
+    <input type="text" id="admName" placeholder="Customer Name">
+    <input type="tel" id="admPhone" placeholder="Phone Number">
+    <input type="password" id="admPin" placeholder="Enter PIN Code" style="border: 2px solid red;">
+    
+    <button onclick="generateAdminCoupon()">Generate Coupon</button>
+
+    <div id="resultBox" class="result">
+        <div style="color:#aaa">Write this on the bill:</div>
+        <span id="couponDisplay" class="big-code">---</span>
+        <div style="color:green">Saved to Sheet! ✅</div>
+    </div>
+
+    <script>
+        function generateAdminCoupon() {
+            var name = document.getElementById('admName').value;
+            var phone = document.getElementById('admPhone').value;
+            var pin = document.getElementById('admPin').value;
+            var resultBox = document.getElementById('resultBox');
+
+            if(!name || !phone || !pin) { alert("Fill all details!"); return; }
+
+            // 1. Jumble Logic (Name + Last 4 digits of phone)
+            var last4 = phone.slice(-4);
+            var shortName = name.substring(0,3).toUpperCase();
+            // Example: RAM-9821-NXT
+            var code = `${shortName}-${last4}-NXT`;
+
+            // 2. Send to Google Sheet (With PIN)
+            var formData = new URLSearchParams();
+            formData.append('action', 'admin_generate'); // Tell script this is Admin work
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('coupon', code);
+            formData.append('pin', pin); // Send the PIN to verify
+
+            // REPLACE WITH YOUR GOOGLE SCRIPT URL BELOW
+            fetch('https://script.google.com/macros/s/AKfycbw5e6lsD0Wy9T2b98YIVvQ63WF4hbF1fqj0_Mw9Jw45pPiYB1DfjzBHbo50Antn3Kjqwg/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.result === "error") {
+                    alert("❌ Error: " + data.message);
+                } else {
+                    document.getElementById('couponDisplay').innerText = code;
+                    resultBox.style.display = 'block';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
