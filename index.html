@@ -1045,6 +1045,8 @@
             // This avoids the CORS Preflight check so we can read the response!
             
             const formData = new URLSearchParams();
+            formData.append('action', 'monthly_offer');
+
             formData.append('name', name);
             formData.append('email', email);
             formData.append('coupon', couponCode);
