@@ -1183,6 +1183,42 @@
             color: var(--primary-gold);
             text-shadow: 0 0 1px rgba(212, 175, 55, 0.3);
         }
+        /* --- UNIVERSAL MOBILE TEXT FIX --- */
+@media (max-width: 768px) {
+    
+    /* 1. The Magic Fix: clamp(minimum, preferred, maximum) */
+    /* This automatically scales text based on screen width (vw) */
+    
+    .hero-content h1 {
+        /* On tiny screens: 1.8rem | On normal mobile: 6% of width | Max: 2.5rem */
+        font-size: clamp(1.8rem, 6vw, 2.5rem) !important; 
+        line-height: 1.2 !important;
+        word-break: normal !important;   /* STOP slicing words */
+        overflow-wrap: normal !important; /* STOP breaking long words */
+        width: 100%;
+    }
+
+    .section-title {
+        /* Scales smoothly so "Specials" fits on one line */
+        font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+        margin-bottom: 10px;
+        word-break: keep-all; /* Tries to keep words together */
+    }
+
+    /* 2. Fix the "Hani Ladies Designer" split */
+    /* If the word is still too long, let it wrap naturally, don't force break it */
+    h1, h2, h3 {
+        hyphens: none !important; /* No auto-hyphens */
+    }
+
+    /* 3. Give the Text More Room */
+    /* Sometimes text breaks because the padding is too tight */
+    .container, .center-wrap {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+    }
+}
     </style>
 </head>
 
