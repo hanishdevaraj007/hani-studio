@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hani Ladies Designer Studio | Aari & Tailoring Classes</title>
+
     <meta name="google-site-verification" content="E2t2JySF8K3zt-4ptI5TsMYxe_AdmfUZfEinD9YLEw8" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-70NFLVW8VZ"></script>
@@ -9,41 +12,37 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-70NFLVW8VZ');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hani Ladies Designer Studio | Aari & Tailoring Classes</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
     <style>
         /* --- CSS VARIABLES & THEME --- */
         :root {
-            --primary-gold: #D4AF37;           /* Premium Gold */
-            --dusty-pink: #D4A5A5;            /* Dusty Pink */
-            --rose-gold: #E8B4B8;             /* Rose Gold */
-            --cream-bg: #FAF8F3;               /* Soft Cream Background */
-            --off-white: #FEFCF9;             /* Off-White */
-            --charcoal: #333333;               /* Deep Charcoal */
-            --text-dark: #2C2C2C;              /* Dark Text */
-            --text-light: #666666;              /* Light Text */
+            --primary-gold: #D4AF37;           
+            --dusty-pink: #D4A5A5;            
+            --rose-gold: #E8B4B8;             
+            --cream-bg: #FAF8F3;               
+            --off-white: #FEFCF9;             
+            --charcoal: #333333;               
+            --text-dark: #2C2C2C;              
+            --text-light: #666666;              
             --whatsapp-green: #25D366;
             --white: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.18);
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-blur: blur(20px);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Lato', sans-serif;
@@ -51,9 +50,10 @@
             color: var(--text-dark);
             background-color: var(--cream-bg);
             font-weight: 400;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6, .section-title, .course-title, .offer-title, .founder-name {
+        h1, h2, h3, h4, .section-title, .course-title, .offer-title, .founder-name {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -63,6 +63,332 @@
         ul { list-style: none; }
         img { max-width: 100%; display: block; object-fit: cover; }
 
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--charcoal);
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--primary-gold);
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .center-wrap { text-align: center; }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp-green) 0%, #1ebc57 100%);
+            color: white;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); 
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-gold);
+            color: var(--charcoal);
+            background: transparent;
+        }
+        .btn-outline:hover { 
+            background: var(--primary-gold); 
+            color: white; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            padding: 25px 0;
+            border-bottom: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        .nav-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            font-family: 'Playfair Display', serif; 
+        }
+        .nav-links { 
+            display: flex; 
+            gap: 40px; 
+        }
+        .nav-links a { 
+            font-size: 0.95rem; 
+            font-weight: 400; 
+            letter-spacing: 0.5px; 
+            transition: 0.3s;
+        }
+        .nav-links a:hover { 
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+        .menu-toggle { 
+            display: none; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 90vh;
+            background: linear-gradient(rgba(44, 44, 44, 0.4), rgba(26, 26, 26, 0.5)), url('FLEX_Hani_ladies_designer.jpg');
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+        .hero-content h1 { 
+            font-size: 4rem; 
+            color: var(--primary-gold); 
+            margin-bottom: 25px; 
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        .hero-content p { 
+            font-size: 1.3rem; 
+            margin-bottom: 40px; 
+            opacity: 0.95; 
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero-location {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            display: block;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero-location i {
+            color: var(--primary-gold);
+        }
+
+        /* --- PREMIUM OFFERS SECTION (APPLE STYLE GRID) --- */
+        #offers { 
+            padding: 120px 0; 
+            background: var(--off-white); 
+        }
+        
+        /* The 2x2 Grid Layout */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* The Premium Glass Card */
+        .offer-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            
+            /* 3D Settings */
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D Floating Elements Inside Card */
+        .offer-icon {
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            transform: translateZ(30px);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateZ(30px) translateY(0px); }
+            50% { transform: translateZ(30px) translateY(-5px); }
+        }
+
+        .offer-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--charcoal);
+            transform: translateZ(20px);
+        }
+        .offer-desc {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            transform: translateZ(20px);
+            line-height: 1.7;
+        }
+        .offer-tag {
+            background: var(--primary-gold);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: translateZ(40px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glint Effect */
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.5),
+                transparent
+            );
+            animation: glintSweep 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes glintSweep {
+            0% { left: -100%; }
+            10% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .offer-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- MOBILE SCROLL (NETFLIX STYLE) --- */
+        @media (max-width: 768px) {
+            .offers-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 40px;
+                gap: 20px;
+            }
+            .offer-card {
+                min-width: 85vw;
+                scroll-snap-align: center;
+                margin-right: 10px;
+            }
+            .offers-grid::-webkit-scrollbar { display: none; }
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about { 
+            padding: 120px 0; 
+            background: white; 
+        }
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px; 
+            align-items: center; 
+        }
+        
+        .founder-note {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-left: 4px solid var(--primary-gold);
+            padding: 35px;
+            font-style: italic;
+            border-radius: 0 15px 15px 0;
+            margin-bottom: 30px;
+            box-shadow: var(--glass-shadow);
+            border-right: var(--glass-border);
+            border-top: var(--glass-border);
+            border-bottom: var(--glass-border);
+        }
+
+        .founder-name {
+            font-weight: 600;
+            color: var(--charcoal);
+            font-style: normal;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .photo-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+        }
+        .photo-grid img { 
+            border-radius: 15px; 
+            height: 220px; 
+            width: 100%; 
+            transition: 0.4s; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .photo-grid img:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
         /* --- REFERRAL BADGE STYLE --- */
         .referral-badge {
             text-align: center;
@@ -70,13 +396,13 @@
             color: var(--charcoal);
             font-weight: 600;
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 15px 30px;
             border-radius: 50px;
-            border: 1px solid var(--glass-border);
+            border: var(--glass-border);
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--glass-shadow);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -87,259 +413,6 @@
             50% { transform: translateY(-5px); }
             100% { transform: translateY(0px); }
         }
-
-        /* --- UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: var(--charcoal);
-            margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: none;
-        }
-
-        .section-specialty {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--primary-gold);
-            margin-bottom: 50px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            background: transparent;
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 0;
-            border-bottom: 2px solid var(--primary-gold);
-            text-transform: uppercase;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--primary-gold);
-            margin-bottom: 50px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            background: transparent;
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 0;
-            border-bottom: 2px solid var(--primary-gold);
-            text-transform: uppercase;
-        }
-
-        .center-wrap { text-align: center; }
-
-        .btn {
-            display: inline-block;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 400;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .btn-whatsapp {
-            background: linear-gradient(135deg, var(--whatsapp-green) 0%, #1ebc57 100%);
-            color: white;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary-gold);
-            color: var(--charcoal);
-            background: transparent;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-gold);
-            color: var(--charcoal);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 25px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            font-weight: 400;
-            transition: 0.3s;
-            color: var(--text-dark);
-            letter-spacing: 0.5px;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover { 
-            color: var(--primary-gold);
-            transform: translateY(-2px);
-        }
-
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--charcoal); }
-
-        /* --- FOUNDER NOTE STYLE --- */
-        .founder-note {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-left: 4px solid var(--primary-gold);
-            padding: 35px;
-            margin-top: 30px;
-            border-radius: 0 15px 15px 0;
-            font-style: italic;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-right: 1px solid var(--glass-border);
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .founder-name {
-            font-weight: 600;
-            color: var(--charcoal);
-            font-style: normal;
-            display: block;
-            margin-bottom: 10px;
-            text-transform: none;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-        }
-
-        /* --- HERO SECTION --- */
-        
-        #hero {
-            height: 90vh;
-            background: linear-gradient(rgba(44, 44, 44, 0.4), rgba(26, 26, 26, 0.5)), url('FLEX_Hani_ladies_designer.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
-            color: var(--primary-gold);
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-            display: block;
-            color: var(--off-white);
-            opacity: 0.95;
-            letter-spacing: 1px;
-            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-location {
-            margin-top: 30px;
-            font-size: 1.2rem;
-            display: block;
-            opacity: 0.9;
-            font-weight: 400;
-            color: var(--off-white);
-            letter-spacing: 0.5px;
-            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        .hero-location i {
-             color: var(--primary-gold);
-        }
-
-        /* --- ABOUT SECTION --- */
-        #about {
-            padding: 120px 0;
-            background: var(--off-white);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 25px;
-            line-height: 1.9;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .photo-grid img {
-            width: 100%;
-            height: 220px;
-            border-radius: 15px;
-            border: none;
-            transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .photo-grid img:hover { 
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        /* --- COURSES SECTION --- */
 
         /* --- COMBO BANNER STYLE --- */
         .combo-banner {
@@ -357,14 +430,12 @@
             border-bottom: 3px solid var(--charcoal);
         }
 
-        @keyframes pulse-banner {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.01); }
-            100% { transform: scale(1); }
+        /* --- COURSES SECTION (Bento) --- */
+        #courses { 
+            padding: 120px 0; 
+            background: var(--cream-bg); 
         }
-
-        #courses { padding: 120px 0; background: var(--cream-bg); }
-
+        
         .courses-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -372,14 +443,31 @@
             gap: 20px;
             min-height: 800px;
         }
-
-        /* Hero card - Aari Embroidery (left column, spans 2 rows) */
-        .course-card.course-hero {
-            grid-column: 1;
-            grid-row: 1 / 3;
+        
+        .course-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+            border: var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .course-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); 
+            border-color: var(--primary-gold);
         }
 
-        /* Right column nested grid container */
+        .course-card.course-hero { 
+            grid-column: 1; 
+            grid-row: 1 / 3; 
+        }
+
         .courses-grid-right {
             display: grid;
             grid-template-columns: 1fr;
@@ -389,7 +477,6 @@
             grid-row: 1 / 3;
         }
 
-        /* Bottom half container for Machine and Basic */
         .courses-grid-bottom {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -397,67 +484,15 @@
             grid-row: 2;
         }
 
-        .course-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-gold);
-        }
-
-        /* Hero card styling (Aari) */
-        .course-card.course-hero .course-img {
-            height: 320px;
-            background: #ddd;
-            width: 100%;
+        .course-img { 
+            height: 200px; 
+            width: 100%; 
+            background: #ddd; 
             flex-shrink: 0;
         }
-
-        .course-card.course-hero .course-content {
-            padding: 45px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .course-card.course-hero .course-img { 
+            height: 320px; 
         }
-
-        .course-card.course-hero .course-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .course-card.course-hero .course-price {
-            font-size: 2.2rem;
-            color: var(--primary-gold);
-            font-weight: 600;
-            margin-bottom: 25px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Regular card styling */
-        .course-img {
-            height: 200px;
-            background: #ddd;
-            width: 100%;
-            flex-shrink: 0;
-        }
-
         .course-content { 
             padding: 30px; 
             text-align: center; 
@@ -466,7 +501,9 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
+        .course-card.course-hero .course-content {
+            padding: 45px;
+        }
         .course-title {
             font-size: 1.3rem;
             font-weight: 600;
@@ -474,15 +511,21 @@
             margin-bottom: 12px;
             font-family: 'Playfair Display', serif;
         }
-
-        .course-price {
-            font-size: 1.6rem;
-            color: var(--primary-gold);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-family: 'Playfair Display', serif;
+        .course-card.course-hero .course-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
         }
-
+        .course-price { 
+            color: var(--primary-gold); 
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            margin: 10px 0; 
+            font-family: 'Playfair Display', serif; 
+        }
+        .course-card.course-hero .course-price {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
         .course-details {
             font-size: 0.95rem;
             color: var(--text-light);
@@ -491,14 +534,16 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             padding: 15px 0;
         }
-
-        .course-details span { display: block; margin: 8px 0; }
+        .course-details span { 
+            display: block; 
+            margin: 8px 0; 
+        }
 
         /* --- GUARANTEE BANNER STYLE --- */
         .guarantee-box {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             border: 2px solid var(--primary-gold);
             border-radius: 50px;
             padding: 25px 40px;
@@ -524,38 +569,76 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- SERVICES & PRICING --- */
-        #services {
-            padding: 120px 0;
-            background: var(--off-white);
+        /* --- SERVICES (Pricing) --- */
+        #services { 
+            padding: 120px 0; 
+            background: var(--off-white); 
         }
-
         .pricing-table {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 50px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 60px;
+            box-shadow: var(--glass-shadow);
             max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid var(--glass-border);
-            border-top: 4px solid var(--primary-gold);
+            margin: 0 auto 60px auto;
+            border: var(--glass-border);
+            border-top: 5px solid var(--primary-gold);
         }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        .price-row { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 20px 0; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
             font-size: 1.1rem;
-            color: var(--text-dark);
+        }
+        .price-row:last-child { border-bottom: none; }
+        .price-row span:last-child { 
+            font-weight: 600; 
+            color: var(--primary-gold); 
+        }
+        .price-row.featured { 
+            background: rgba(212, 175, 55, 0.1); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 10px 0; 
+            border: 1px solid var(--primary-gold); 
         }
 
-        .price-row:last-child { border-bottom: none; }
-        .price-row span:last-child { font-weight: 600; color: var(--primary-gold); }
+        .discount-badge {
+            display: inline-block;
+            background: var(--rose-gold);
+            color: var(--charcoal) !important;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-left: 12px;
+            box-shadow: 0 5px 15px rgba(232, 180, 184, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .promo-link {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+        }
+
+        .promo-link a {
+            color: var(--primary-gold);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-gold);
+            transition: 0.3s;
+        }
+
+        .promo-link a:hover {
+            color: var(--charcoal);
+            border-bottom-color: var(--charcoal);
+        }
 
         .gallery-grid {
             display: grid;
@@ -583,43 +666,111 @@
             transition: 0.5s;
         }
         
-        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover img { 
+            transform: scale(1.1); 
+        }
 
-        /* --- CONTACT SECTION --- */
-        #contact { padding: 120px 0; text-align: center; background: var(--cream-bg); }
+        /* --- COUPON SECTION --- */
+        #coupon { 
+            padding: 120px 0; 
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--cream-bg) 100%); 
+            text-align: center; 
+        }
+        .coupon-box {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 20px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        .coupon-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--charcoal);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .coupon-input {
+            width: 100%; 
+            padding: 18px 25px; 
+            margin: 15px 0;
+            border: 2px solid rgba(212, 175, 55, 0.3); 
+            border-radius: 50px; 
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s;
+        }
+        .coupon-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+        #coupon-result {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 15px;
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        .code-display {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: 3px;
+            margin: 15px 0;
+            display: block;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        .expiry-text {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
 
-        .contact-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 60px;
-            justify-content: center;
+        /* --- CONTACT --- */
+        #contact { 
+            padding: 120px 0; 
+            background: var(--off-white); 
+        }
+        .contact-box { 
+            display: flex; 
+            gap: 60px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
             margin-top: 60px;
         }
-
-        .map-container {
-            width: 100%;
-            max-width: 650px;
-            height: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 25px;
             justify-content: center;
         }
-
         .contact-info h3 {
             font-family: 'Playfair Display', serif;
             color: var(--charcoal);
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
-
+        .map-container { 
+            width: 100%; 
+            max-width: 650px; 
+            height: 400px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
         .social-btn {
             display: inline-flex;
             align-items: center;
@@ -633,35 +784,44 @@
             letter-spacing: 0.5px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
-
         .social-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
-
         .insta-btn { 
             background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
         }
-        
+
         footer {
             background: var(--charcoal);
             color: var(--off-white);
             text-align: center;
             padding: 40px 20px;
-            margin-top: 0;
             letter-spacing: 1px;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- MOBILE MEDIA QUERIES --- */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 25px;
+            .container { padding: 0 25px; }
+            .section-title { font-size: 2.2rem; }
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 75px; 
+                left: 0; 
+                width: 100%; 
+                background: var(--glass-bg); 
+                backdrop-filter: var(--glass-blur);
+                -webkit-backdrop-filter: var(--glass-blur);
+                padding: 30px 20px; 
+                box-shadow: var(--glass-shadow); 
+                text-align: center;
+                border-bottom: var(--glass-border);
             }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            
             .hero-content h1 { 
                 font-size: 2.5rem; 
                 letter-spacing: 1px;
@@ -669,25 +829,6 @@
             .hero-content p { 
                 font-size: 1.1rem; 
             }
-            
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background: var(--glass-bg);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                padding: 30px 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                border-bottom: 1px solid var(--glass-border);
-            }
-
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
             
             .about-grid { 
                 grid-template-columns: 1fr; 
@@ -710,11 +851,6 @@
                 padding: 35px 25px;
             }
 
-            .course-card {
-                margin-bottom: 20px;
-            }
-
-            /* Bento Grid: Stack on mobile */
             .courses-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
@@ -753,210 +889,13 @@
             .course-card.course-hero .course-price {
                 font-size: 1.8rem;
             }
-        }
-        /* --- COUPON SECTION STYLES --- */
-        #coupon {
-            padding: 120px 0;
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--cream-bg) 100%);
-            text-align: center;
-        }
 
-        .coupon-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 650px;
-            margin: 0 auto;
-            border: 1px solid var(--glass-border);
-            position: relative;
+            .guarantee-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
         }
-
-        .coupon-box h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--charcoal);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .coupon-input {
-            width: 100%;
-            padding: 18px 25px;
-            margin: 15px 0;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            background: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s;
-        }
-
-        .coupon-input:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        #coupon-result {
-            display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        .code-display {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            letter-spacing: 3px;
-            margin: 15px 0;
-            display: block;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 15px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .expiry-text {
-            color: var(--text-light);
-            font-weight: 400;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-        /* --- NEW PRICING STYLES --- */
-        .price-row.featured {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid var(--primary-gold);
-            border-radius: 15px;
-            margin: 15px -15px;
-            padding: 20px 25px;
-            position: relative;
-        }
-
-        .discount-badge {
-            display: inline-block;
-            background: var(--rose-gold);
-            color: var(--charcoal) !important;
-            font-size: 0.75rem;
-            padding: 5px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-left: 12px;
-            white-space: nowrap;
-            vertical-align: middle;
-            box-shadow: 0 5px 15px rgba(232, 180, 184, 0.3);
-            letter-spacing: 0.5px;
-        }
-        
-        .promo-link {
-            text-align: center; 
-            margin-top: 40px; 
-            font-size: 1.2rem;
-            color: var(--text-light);
-            letter-spacing: 0.5px;
-        }
-        
-        .promo-link a {
-            color: var(--primary-gold);
-            font-weight: 600;
-            text-decoration: none;
-            border-bottom: 2px solid var(--primary-gold);
-            transition: 0.3s;
-        }
-
-        .promo-link a:hover {
-            color: var(--charcoal);
-            border-bottom-color: var(--charcoal);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* --- SPECIAL OFFERS SECTION --- */
-        #offers {
-            padding: 120px 0;
-            background: var(--off-white);
-            border-bottom: none;
-        }
-
-        .offers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
-        }
-
-        .offer-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .offer-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-gold);
-        }
-
-        .offer-icon {
-            font-size: 2.8rem;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-        }
-
-        .offer-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--charcoal);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .offer-desc {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
-        .offer-tag {
-            background: var(--rose-gold);
-            color: var(--charcoal);
-            font-size: 0.75rem;
-            padding: 6px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(232, 180, 184, 0.3);
-        }
-
-        /* Special style for the Duo Offer to make it pop */
-        .offer-card.duo-special {
-            background: rgba(212, 175, 55, 0.15);
-            border: 2px solid var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
     </style>
 </head>
 <body>
@@ -973,7 +912,6 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#coupon">Coupon</a></li>
                 <li><a href="#contact">Contact</a></li>
-                
             </ul>
         </div>
     </nav>
@@ -987,7 +925,9 @@
                 <i class="fab fa-whatsapp"></i> Book Class / Order Now
             </a>
             
-            <span class="hero-location" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-map-marker-alt"></i> 1st Floor, Above SSPA ILAI KADAI, Jothipuram, Mettupalayam Road, CBE-47</span>
+            <span class="hero-location" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-map-marker-alt"></i> 1st Floor, Above SSPA ILAI KADAI, Jothipuram, Mettupalayam Road, CBE-47
+            </span>
         </div>
     </section>
 
@@ -995,44 +935,45 @@
         <div class="container">
             <div class="center-wrap">
                 <h2 class="section-title">New Customer Specials</h2>
-                <div class="section-subtitle">Limited Time Launch Offers</div>
+                <div class="section-subtitle">Exclusive Launch Offers</div>
             </div>
 
             <div class="offers-grid">
                 
-                <div class="offer-card" data-aos="fade-up">
-                    <div class="offer-icon"><i class="fas fa-cut"></i></div>
-                    <div class="offer-title">First Stitching Service</div>
-                    <p class="offer-desc">Get <strong>FREE Pico</strong> done with your first blouse or chudi stitching order.</p>
-                    <span class="offer-tag">New Customers Only</span>
-                </div>
-
-                <div class="offer-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offer-icon"><i class="fas fa-palette"></i></div>
-                    <div class="offer-title">Aari / Machine Course</div>
-                    <p class="offer-desc">First 5 students get a <strong>FREE Embroidery Frame</strong> included with admission.</p>
-                    <span class="offer-tag">Fast Filling! 🏃‍♀️</span>
-                </div>
-
-                <div class="offer-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offer-icon"><i class="fas fa-tools"></i></div>
-                    <div class="offer-title">Tailoring Courses</div>
-                    <p class="offer-desc">First 5 students get a <strong>FREE Seam Ripper & Trimmer</strong> kit.</p>
-                    <span class="offer-tag">Limited Spots</span>
-                </div>
-
-                <div class="offer-card duo-special" data-aos="fade-up" data-aos-delay="600">
+                <div class="offer-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
                     <div class="offer-icon"><i class="fas fa-user-friends"></i></div>
                     <div class="offer-title">Join With a Friend</div>
                     <p class="offer-desc">Enroll together and get <strong>₹500 OFF</strong> on total fees!</p>
-                    <span class="offer-tag" style="background:var(--primary-gold); color:var(--charcoal);">Best Value ⭐</span>
+                    <span class="offer-tag">⭐ Best Value</span>
+                </div>
+
+                <div class="offer-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <div class="offer-icon"><i class="fas fa-cut"></i></div>
+                    <div class="offer-title">First Stitching Order</div>
+                    <p class="offer-desc">Get <strong>FREE Pico</strong> done with your first blouse or chudi order.</p>
+                    <span class="offer-tag" style="background:var(--rose-gold); color:var(--charcoal);">New Customers</span>
+                </div>
+
+                <div class="offer-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <div class="offer-icon"><i class="fas fa-palette"></i></div>
+                    <div class="offer-title">Embroidery Course</div>
+                    <p class="offer-desc">First 5 students get a <strong>FREE Embroidery Frame</strong> included.</p>
+                    <span class="offer-tag" style="background:var(--dusty-pink); color:var(--charcoal);">Fast Filling!</span>
+                </div>
+
+                <div class="offer-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <div class="offer-icon"><i class="fas fa-tools"></i></div>
+                    <div class="offer-title">Tailoring Course</div>
+                    <p class="offer-desc">First 5 students get a <strong>FREE Seam Ripper & Trimmer</strong> kit.</p>
+                    <span class="offer-tag" style="background:var(--dusty-pink); color:var(--charcoal);">Limited Spots</span>
                 </div>
 
             </div>
             
-            <div style="text-align:center; margin-top:30px;">
-                <p style="color:#666; font-size:0.9rem;">* Terms & Conditions Apply. Offers valid for limited seats only.</p>
-            </div>
+            <p style="text-align:center; margin-top:30px; color:#888; font-size:0.9rem;">
+                <span class="mobile-only">Swipe left to see all offers →</span>
+                <span class="desktop-only">* Terms & Conditions Apply. Offers valid for limited seats only.</span>
+            </p>
         </div>
     </section>
 
@@ -1044,17 +985,16 @@
             </div>
             
             <div class="about-grid">
-                <div class="about-text">
-                    <div class="founder-note" data-aos="fade-up">
+                <div class="about-text" data-aos="fade-right">
+                    <div class="founder-note">
                         <span class="founder-name">Hello, I am Krishnaveni</span>
                         "I am a <strong>DST Certified Trainer</strong> <a href="https://nirdpr.org.in/rseti/" target="_blank" style="color: blue; text-decoration: underline;">(RSETI)</a> specializing in both Aari Hand Embroidery and Tailoring. With over <strong>15 years of experience</strong> in ladies' garment designing and teaching at various institutions since 2012, I ensure every student masters the art perfectly."
                     </div>
-                    <br>
                     <p>Welcome to Hani Ladies Designer Studio. We specialize in professional ladies designer training and custom designing. Our goal is to empower women through skill development.</p>
                     <p>We provide home classes with personal attention to ensure every student masters the art of embroidery and tailoring. Whether you are a beginner or looking to upgrade your skills, we have the right course for you.</p>
                     <a href="#contact" class="btn btn-outline">Visit Studio</a>
                 </div>
-                <div class="photo-grid">
+                <div class="photo-grid" data-aos="fade-left">
                     <img src="Tailoring/PurAaari.jpg" alt="Work 1">
                     <img src="Tailoring/Lred.jpg" alt="Work 2">
                     <img src="Tailoring/LredAari.jpg" alt="Work 3">
@@ -1071,10 +1011,10 @@
                 <div class="section-subtitle">Join Our Batches</div>
                 
                 <div class="referral-container">
-                <div class="referral-badge">
-                    <i class="fas fa-hand-holding-usd"></i> 
-                    Referral Bonus: Enroll & get <strong>₹200 CASHBACK</strong> for every friend you bring!
-                </div>
+                    <div class="referral-badge">
+                        <i class="fas fa-hand-holding-usd"></i> 
+                        Referral Bonus: Enroll & get <strong>₹200 CASHBACK</strong> for every friend you bring!
+                    </div>
                 </div>
             </div>
 
@@ -1158,6 +1098,7 @@
                 <h2 class="section-title">Stitching & Works</h2>
                 <div class="section-subtitle">Affordable Professional Pricing</div>
             </div>
+
             <div class="guarantee-box">
                 <i class="fas fa-check-circle guarantee-icon"></i>
                 <span class="guarantee-text">
@@ -1165,35 +1106,18 @@
                 </span>
             </div>
 
-            <div class="pricing-table">
-                <div class="price-row">
-                    <span>Simple Blouse</span>
-                    <span>₹140</span>
-                </div>
-                <div class="price-row">
-                    <span>Lining Blouse</span>
-                    <span>₹250 - ₹300</span>
-                </div>
-                <div class="price-row">
-                    <span>Saree Falls + Edge</span>
-                    <span>₹100</span>
-                </div>
-                <div class="price-row">
-                    <span>Chudi Stitching</span>
-                    <span>₹350 - ₹450</span>
-                </div>
-
+            <div class="pricing-table" data-aos="zoom-in">
+                <div class="price-row"><span>Simple Blouse</span><span>₹140</span></div>
+                <div class="price-row"><span>Lining Blouse</span><span>₹250 - ₹300</span></div>
+                <div class="price-row"><span>Saree Falls + Edge</span><span>₹100</span></div>
+                <div class="price-row"><span>Chudi Stitching</span><span>₹350 - ₹450</span></div>
                 <div class="price-row featured">
-                    <span>
-                        Aari Hand Embroidery 
-                        <span class="discount-badge">5% OFF Offer</span>
-                    </span>
+                    <span>Aari Hand Embroidery <span class="discount-badge">5% OFF Offer</span></span>
                     <span>Starts ₹1,500</span>
                 </div>
-
                 <div class="price-row" style="border-bottom:none;">
                     <span>Custom Patterns & Designs</span>
-                    <span style="font-size:0.9rem; color:var(--primary-gold);">Negotiable - Contact Us!</span>
+                    <span style="font-size:0.9rem;">Negotiable</span>
                 </div>
             </div>
 
@@ -1201,6 +1125,16 @@
                 <i class="fas fa-gift"></i> Want that 5% Discount on Aari?<br> 
                 <a href="#coupon">Generate your Coupon below! 👇</a>
             </div>
+
+            <h3 style="text-align:center; color:var(--text-light); margin-top:60px;">Popular Work</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="Aari/pink.jpg" alt="Pink Design"></div>
+                <div class="gallery-item"><img src="Aari/velvet.jpg" alt="Velvet Design"></div>
+                <div class="gallery-item"><img src="Aari/mint.jpg" alt="Mint Design"></div>
+                <div class="gallery-item"><img src="Aari/Maroon.jpg" alt="Maroon Design"></div>
+            </div>
+        </div>
+    </section>
 
     <section id="coupon">
         <div class="container">
@@ -1211,12 +1145,12 @@
 
             <div class="coupon-box" data-aos="fade-up">
                 <h3>🔥 Generate Your Discount Code</h3>
-                <p style="margin-bottom:20px; color:#666;">Enter your details to get a coupon valid for 7 days on any service!</p>
+                <p style="margin-bottom:20px; color:#666;">Enter your details to get a coupon valid for 7 days!</p>
                 
                 <form id="couponForm">
-                <input type="text" id="custName" class="coupon-input" placeholder="Your Name (Required, min 4 chars)" required minlength="4">
-                <input type="email" id="custEmail" class="coupon-input" placeholder="Your Email (Required)" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                    <button type="submit" class="btn btn-whatsapp" style="width:100%; border:none; margin-top:10px;">
+                    <input type="text" id="custName" class="coupon-input" placeholder="Your Name (Min 4 chars)" required minlength="4">
+                    <input type="email" id="custEmail" class="coupon-input" placeholder="Your Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <button type="submit" class="btn btn-whatsapp" style="width:100%; margin-top:10px;">
                         <i class="fas fa-gift"></i> Generate Coupon
                     </button>
                 </form>
@@ -1229,19 +1163,9 @@
                     <div style="font-size:1.2rem;">🎉 Your Coupon Code:</div>
                     <span id="finalCode" class="code-display">HANI-XXXX</span>
                     <p class="expiry-text">Valid until: <span id="expiryDate"></span></p>
-                    <p style="font-size:0.9rem; margin-top:10px;">Take a screenshot or show this message on WhatsApp!</p>
-                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-light);">NOTE: One coupon per person.<br>Can be used for AARI work only (Courses excluded)</p>
+                    <p style="font-size:0.9rem; margin-top:10px;">Take a screenshot or show this on WhatsApp!</p>
+                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-light);">NOTE: One coupon per person. Can be used for AARI work only (Courses excluded)</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-            <h3 style="text-align:center; color:var(--text-light); margin-top:20px;">Popular Work </h3>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="Aari/pink.jpg" alt="Pink Design"></div>
-                <div class="gallery-item"><img src="Aari/velvet.jpg" alt="Velvet Design"></div>
-                <div class="gallery-item"><img src="Aari/mint.jpg" alt="Mint Design"></div>
-                <div class="gallery-item"><img src="Aari/Maroon.jpg" alt="Light Pink Design"></div>
             </div>
         </div>
     </section>
@@ -1278,17 +1202,26 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Hani Ladies Designer Studio. All Rights Reserved.</p>
+        <p>© 2026 Hani Ladies Designer Studio. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mobile Menu Toggle Script
+        AOS.init({ duration: 1000, once: true });
+
+        // Initialize 3D Tilt for Offer Cards
+        VanillaTilt.init(document.querySelectorAll(".offer-card"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.4,
+            scale: 1.05
+        });
+
+        // Mobile Menu
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
 
         // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
@@ -1297,69 +1230,55 @@
             });
         });
 
-        // --- COUPON GENERATOR LOGIC ---
+        // Coupon Logic
         const couponForm = document.getElementById('couponForm');
         const loadingDiv = document.getElementById('coupon-loading');
         const resultDiv = document.getElementById('coupon-result');
 
         couponForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page refresh
-
+            e.preventDefault();
             const name = document.getElementById('custName').value;
             const email = document.getElementById('custEmail').value;
 
-            if (name.length < 4) {
-                alert("Please enter your full name (at least 4 characters).");
-                return; // Stop here, do not send to Google Sheet
+            if (name.length < 4) { 
+                alert("Please enter your full name (at least 4 characters)."); 
+                return; 
             }
 
-            // 2. Strict Email Check (Regex)
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address (e.g., name@gmail.com).");
-                return; // Stop here
+                alert("Please enter a valid email address.");
+                return;
             }
-
-            /* --- END OF VALIDATION BLOCK --- */
             
-            // 1. Generate Random Code
             const randomChars = Math.random().toString(36).substring(2, 5).toUpperCase();
             const dateStr = new Date().toLocaleDateString('en-GB').slice(0,5).replace('/','');
             const couponCode = `HANI-${dateStr}-${randomChars}`;
-
-            // 2. Calculate Expiry (7 days from now)
+            
             const expiry = new Date();
             expiry.setDate(expiry.getDate() + 7);
             const expiryStr = expiry.toLocaleDateString('en-GB');
 
-            // 3. Show Loading
             couponForm.style.display = 'none';
             loadingDiv.style.display = 'block';
 
-            // 4. Send Data using "URLSearchParams" (Standard Form Data)
-            // This avoids the CORS Preflight check so we can read the response!
-            
             const formData = new URLSearchParams();
             formData.append('action', 'monthly_offer');
-
             formData.append('name', name);
             formData.append('email', email);
             formData.append('coupon', couponCode);
 
             fetch('https://script.google.com/macros/s/AKfycbw5e6lsD0Wy9T2b98YIVvQ63WF4hbF1fqj0_Mw9Jw45pPiYB1DfjzBHbo50Antn3Kjqwg/exec', {
-                method: 'POST',
-                body: formData // Sending as Simple Form Data
+                method: 'POST', 
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
+                loadingDiv.style.display = 'none';
                 if (data.result === "error") {
-                    // STOP! Duplicate found.
                     alert("❌ " + data.message);
-                    loadingDiv.style.display = 'none';
                     couponForm.style.display = 'block';
                 } else {
-                    // SUCCESS!
-                    loadingDiv.style.display = 'none';
                     resultDiv.style.display = 'block';
                     document.getElementById('finalCode').innerText = couponCode;
                     document.getElementById('expiryDate').innerText = expiryStr;
@@ -1371,16 +1290,6 @@
                 loadingDiv.style.display = 'none';
                 couponForm.style.display = 'block';
             });
-        });
-    </script>
-    
-    <!-- AOS Animation Library JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 1200,
-            once: true
         });
     </script>
 </body>
