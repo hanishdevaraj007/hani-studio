@@ -901,7 +901,240 @@
                 text-align: center;
                 padding: 25px;
             }
+            .course-deck {
+        flex-direction: column;
+        height: auto; /* Let it grow naturally */
+        perspective: none; /* Remove 3D effects */
+    }
+    
+    .deck-card {
+        height: auto; /* Fit content */
+        flex: none;   /* Disable the flex-grow animation logic */
+        width: 100%;
+        margin-bottom: 20px; /* Space between cards */
+        
+        /* Layout: Standard Card */
+        padding: 40px 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+        /* Always show the gold border on mobile so it pops */
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* 1. HIDE the "Sideways Strip" completely on mobile */
+    .deck-visual {
+        display: none; 
+    }
+    
+    /* 2. SHOW the "Details" permanently */
+    .deck-details {
+        opacity: 1;
+        transform: translateY(0);
+        position: relative;
+        width: auto;
+        height: auto;
+        display: flex; /* Ensure flex layout is active */
+    }
+
+    /* Adjust Icon for Mobile Header */
+    .deck-details h3::before {
+        content: ''; /* We can add the icon back here if needed, or just keep it simple */
+        display: block;
+        height: 10px;
+    }
         }
+        /* --- PREMIUM ACCORDION DECK --- */
+#courses { padding: 100px 0; background: var(--cream-bg); }
+
+/* The Deck Container */
+.course-deck {
+    display: flex;
+    gap: 20px;
+    height: 500px; /* Fixed height for consistency */
+    max-width: 1200px;
+    margin: 40px auto;
+    perspective: 1000px;
+}
+
+/* Individual Card (The Shutter) */
+.deck-card {
+    position: relative;
+    flex: 1; /* All start equal width */
+    background: var(--white);
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    /* The Smooth Slide Animation */
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+    
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HOVER STATE: Expand the one you touch */
+.deck-card:hover {
+    flex: 4; /* Grow 4x larger than the others */
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15); /* Gold Glow */
+    border-color: var(--primary-gold);
+}
+
+/* --- THE VISUAL (Icon Strip) --- */
+.deck-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Hide visual when expanded */
+.deck-card:hover .deck-visual {
+    opacity: 0; 
+    pointer-events: none;
+}
+
+.icon-circle {
+    width: 80px; height: 80px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 30px;
+    color: var(--primary-gold);
+    font-size: 2rem;
+}
+
+.deck-visual h3 {
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    transform: rotate(-90deg); /* Text sideways to save space */
+    white-space: nowrap;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 40px;
+}
+
+/* --- THE DETAILS (Hidden Content) --- */
+.deck-details {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s 0.1s; /* Slight delay */
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show details when expanded */
+.deck-card:hover .deck-details {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.deck-details h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+}
+
+.deck-details .price {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+}
+
+.course-features {
+    text-align: left;
+    margin-bottom: 40px;
+    color: #666;
+    font-size: 1.1rem;
+}
+.course-features li { margin-bottom: 12px; }
+.course-features i { color: var(--primary-gold); width: 25px; }
+
+/* --- MOBILE VIEW (Vertical Stack) --- */
+@media (max-width: 768px) {
+    .course-deck {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .deck-card {
+        height: 100px; /* Small strip */
+        flex-direction: row;
+        padding: 0 30px;
+        justify-content: flex-start;
+        flex: none; /* Disable flex growth logic on mobile */
+    }
+
+    /* --- FIXING THE SPACING --- */
+
+.deck-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Keeps everything vertically centered */
+    align-items: center;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Added Gap to push elements apart */
+    gap: 20px; 
+}
+
+.deck-visual h3 {
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    /* The Rotation */
+    transform: rotate(-90deg); 
+    white-space: nowrap;
+    letter-spacing: 3px; /* More spacing between letters looks cleaner */
+    text-transform: uppercase;
+    
+    /* THE FIX: Push the text away from the icon */
+    margin-top: 100px; 
+    
+    /* Ensure it doesn't drift off center */
+    transform-origin: center; 
+}
+
+    .icon-circle { margin-bottom: 0; width: 50px; height: 50px; font-size: 1.2rem; }
+    
+    /* On mobile, clicking expands height */
+    .deck-card:active, .deck-card:focus-within {
+        height: 450px;
+        background: var(--cream-bg);
+    }
+    
+    .deck-card:active .deck-visual, .deck-card:focus-within .deck-visual {
+        display: none; /* Hide strip when open */
+    }
+    
+    .deck-card:active .deck-details, .deck-card:focus-within .deck-details {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
         
         /* --- VISIBILITY UTILITIES --- */
 /* By default (Desktop), hide mobile text */
@@ -913,6 +1146,52 @@
         .mobile-only { display: block; } /* Show "Swipe" text */
         .desktop-only { display: none; } /* Hide Desktop terms */
     }
+
+    /* --- DOMINO UNDERLINE EFFECT --- */
+
+/* 1. The Wrapper for each letter */
+.char-span {
+    display: inline-block;
+    position: relative;
+    /* Speed of the individual stroke */
+    transition: color 0.3s ease;
+}
+
+/* 2. The Golden Line (Hidden by default) */
+.char-span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0px; /* Adjust distance from text */
+    width: 100%;
+    height: 2px; /* Thickness of the pen */
+    background: var(--primary-gold);
+    
+    /* Start hidden (scaled to 0 width) */
+    transform: scaleX(0);
+    transform-origin: left;
+    
+    /* The Animation Physics */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    /* The Sequence Logic: Use the variable calculated by JS */
+    transition-delay: calc(var(--char-index) * 0.03s);
+}
+
+/* 3. The Trigger: When parent (.animate-text) is hovered */
+.animate-text:hover .char-span::after,
+.offer-card:hover .char-span::after,  /* Triggers when hovering the whole card */
+.course-card:hover .char-span::after {
+    transform: scaleX(1); /* Draw the line */
+}
+
+/* Optional: Make text turn slightly darker gold too */
+.animate-text:hover .char-span,
+.offer-card:hover .char-span,
+.course-card:hover .char-span {
+    color: var(--primary-gold);
+    text-shadow: 0 0 1px rgba(212, 175, 55, 0.3);
+}
 
     </style>
 </head>
@@ -1023,92 +1302,98 @@
     </section>
 
     <section id="courses">
-        <div class="container">
-            <div class="center-wrap">
-                <h2 class="section-title">Choose Your Course</h2>
-                <div class="section-subtitle">Join Our Batches</div>
-                
-                <div class="referral-container">
-                    <div class="referral-badge">
-                        <i class="fas fa-hand-holding-usd"></i> 
-                        Referral Bonus: Enroll & get <strong>₹200 CASHBACK</strong> for every friend you bring!
-                    </div>
-                </div>
-            </div>
-
-            <div class="combo-banner">
-                <i class="fas fa-star"></i> 
-                SUPER SAVER: Enroll in ANY 2 Courses together & Get Flat ₹500 OFF! 
-                <i class="fas fa-star"></i>
-            </div>
-
-            <div class="courses-grid">
-                <!-- Left Column: Hero Card (Aari) - Spans 2 rows -->
-                <div class="course-card course-hero" data-aos="fade-up">
-                    <img src="https://placehold.co/400x250/FFD700/333?text=Aari+Embroidery" class="course-img" alt="Aari Work">
-                    <div class="course-content">
-                        <div class="course-title">Aari Hand Embroidery</div>
-                        <div class="course-price">₹5,000</div>
-                        <div class="course-details">
-                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
-                        </div>
-                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Aari%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
-                    </div>
-                </div>
-
-                <!-- Right Column: Nested Grid -->
-                <div class="courses-grid-right">
-                    <!-- Top: Tailoring Advanced (wide) -->
-                    <div class="course-card" data-aos="fade-up" data-aos-delay="200">
-                        <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Advanced" class="course-img" alt="Tailoring Advanced">
-                        <div class="course-content">
-                            <div class="course-title">Tailoring Advanced</div>
-                            <div class="course-price">₹5,000</div>
-                            <div class="course-details">
-                                <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                                <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                                <span><i class="fas fa-users"></i> 3 Batches Available</span>
-                            </div>
-                            <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Advanced%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Bottom: Machine and Basic side-by-side -->
-                    <div class="courses-grid-bottom">
-                        <div class="course-card" data-aos="fade-up" data-aos-delay="400">
-                            <img src="https://placehold.co/400x250/FFD700/333?text=Machine+Embroidery" class="course-img" alt="Machine Embroidery">
-                            <div class="course-content">
-                                <div class="course-title">Machine Embroidery</div>
-                                <div class="course-price">₹4,000</div>
-                                <div class="course-details">
-                                    <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                                    <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                                    <span><i class="fas fa-users"></i> 3 Batches Available</span>
-                                </div>
-                                <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Machine%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
-                            </div>
-                        </div>
-
-                        <div class="course-card" data-aos="fade-up" data-aos-delay="600">
-                            <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Basic" class="course-img" alt="Tailoring Basic">
-                            <div class="course-content">
-                                <div class="course-title">Tailoring Basic</div>
-                                <div class="course-price">₹5,000</div>
-                                <div class="course-details">
-                                    <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                                    <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                                    <span><i class="fas fa-users"></i> 3 Batches Available</span>
-                                </div>
-                                <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Basic%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="center-wrap">
+            <h2 class="section-title">Choose Your Course</h2>
+            <div class="section-subtitle">Tap a card to view details</div>
+            
+            <div class="referral-container">
+                <div class="referral-badge">
+                    <i class="fas fa-hand-holding-usd"></i> 
+                    Referral Bonus: Get <strong>₹200 CASHBACK</strong> for every friend you bring!
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="combo-banner">
+            <i class="fas fa-star"></i> 
+            SUPER SAVER: Enroll in ANY 2 Courses together & Get Flat <strong>₹500 OFF!</strong>  
+            <i class="fas fa-star"></i>
+        </div>
+
+        <div class="course-deck">
+            
+            <div class="deck-card active">
+                <div class="deck-visual">
+                    <div class="icon-circle"><i class="fas fa-palette"></i></div>
+                    <h3>Aari Embroidery</h3>
+                </div>
+                <div class="deck-details">
+                    <h3>Aari Hand Embroidery</h3>
+                    <div class="price">₹5,000</div>
+                    <ul class="course-features">
+                        <li><i class="far fa-clock"></i> 30 Days Duration</li>
+                        <li><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</li>
+                        <li><i class="fas fa-users"></i> 3 Batches Available</li>
+                    </ul>
+                    <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Aari%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="deck-card">
+                <div class="deck-visual">
+                    <div class="icon-circle"><i class="fas fa-cut"></i></div>
+                    <h3>Tailoring Advanced</h3>
+                </div>
+                <div class="deck-details">
+                    <h3>Tailoring Advanced</h3>
+                    <div class="price">₹5,000</div>
+                    <ul class="course-features">
+                        <li><i class="far fa-clock"></i> 30 Days Duration</li>
+                        <li><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</li>
+                        <li><i class="fas fa-users"></i> 3 Batches Available</li>
+                    </ul>
+                    <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Advanced%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="deck-card">
+                <div class="deck-visual">
+                    <div class="icon-circle"><i class="fas fa-tshirt"></i></div>
+                    <h3>Machine Emb.</h3>
+                </div>
+                <div class="deck-details">
+                    <h3>Machine Embroidery</h3>
+                    <div class="price">₹4,000</div>
+                    <ul class="course-features">
+                        <li><i class="far fa-clock"></i> 30 Days Duration</li>
+                        <li><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</li>
+                        <li><i class="fas fa-users"></i> 3 Batches Available</li>
+                    </ul>
+                    <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Machine%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="deck-card">
+                <div class="deck-visual">
+                    <div class="icon-circle"><i class="fas fa-pencil-ruler"></i></div>
+                    <h3>Tailoring Basic</h3>
+                </div>
+                <div class="deck-details">
+                    <h3>Tailoring Basic</h3>
+                    <div class="price">₹5,000</div>
+                    <ul class="course-features">
+                        <li><i class="far fa-clock"></i> 30 Days Duration</li>
+                        <li><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</li>
+                        <li><i class="fas fa-users"></i> 3 Batches Available</li>
+                    </ul>
+                    <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Basic%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <section id="services">
         <div class="container">
@@ -1309,5 +1594,45 @@
             });
         });
     </script>
+
+    <div id="glass-lens"></div>
+
+    <script>
+    // --- DOMINO TEXT SPLITTER ---
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all titles you want to animate
+        // We target H1, H2, and specific card titles
+        const targets = document.querySelectorAll('.hero-content h1, .section-title, .offer-title, .course-title, .founder-name, .deck-details h3');
+
+        targets.forEach(target => {
+            // Add a class so CSS knows this is an animated element
+            target.classList.add('animate-text');
+
+            // Get the text
+            const text = target.innerText;
+            
+            // Clear the current text
+            target.innerHTML = '';
+
+            // Split into characters and rebuild with spans
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.classList.add('char-span');
+                
+                // Assign the index (0, 1, 2...) to CSS for the delay
+                span.style.setProperty('--char-index', index);
+                
+                // If it's a space, maintain spacing
+                if (char === ' ') {
+                    span.style.marginRight = '0.3em'; 
+                }
+
+                target.appendChild(span);
+            });
+        });
+    });
+</script>
 </body>
 </html>
+
