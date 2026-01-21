@@ -876,6 +876,35 @@
                 text-align: center;
                 padding: 25px;
             }
+            /* 1. Shrink the Big Section Titles */
+    .section-title {
+        font-size: 1.8rem !important; /* Was 3rem, now smaller */
+        line-height: 1.3;
+        word-wrap: normal; /* Prevents chopping words */
+        padding: 0 10px;   /* Prevents touching the edges */
+    }
+
+    /* 2. Shrink the Hero Title ("Hani Ladies Designer...") */
+    .hero-content h1 {
+        font-size: 2.2rem !important; /* Was 4rem, huge difference */
+        line-height: 1.2;
+        letter-spacing: 1px; /* Reduce spacing so words fit */
+    }
+
+    /* 3. Fix the "Course" & "Offer" Card Titles */
+    .deck-details h3, 
+    .offer-title, 
+    .course-title {
+        font-size: 1.4rem !important; /* Ensure card titles don't break */
+        white-space: normal; /* Allow natural wrapping */
+    }
+
+    /* 4. Fix "Stitching & Works" specifically */
+    /* Ensure the container doesn't squash the text */
+    .center-wrap {
+        width: 100%;
+        padding: 0 10px;
+    }
         }
 
         /* --- PREMIUM ACCORDION DECK --- */
@@ -1474,8 +1503,8 @@
                     </a>
 
                     <p><strong>Address:</strong><br>
-                        562, 1st Floor, Above SSPA ILAI KADIA, Jothipuram,<br>
-                        Mettupalayam Road, Coimbatore.</p>
+                        562, 1st Floor, Above SSPA ILAI KADIA, Jothipuram,
+                        Mettupalayam Road, CBE - 47.</p>
                 </div>
 
                 <div class="map-container" data-aos="fade-up" data-aos-delay="200">
