@@ -367,8 +367,34 @@
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            min-height: 800px;
+        }
+
+        /* Hero card - Aari Embroidery (left column, spans 2 rows) */
+        .course-card.course-hero {
+            grid-column: 1;
+            grid-row: 1 / 3;
+        }
+
+        /* Right column nested grid container */
+        .courses-grid-right {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            grid-column: 2;
+            grid-row: 1 / 3;
+        }
+
+        /* Bottom half container for Machine and Basic */
+        .courses-grid-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            grid-row: 2;
         }
 
         .course-card {
@@ -380,6 +406,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .course-card:hover {
@@ -388,27 +417,69 @@
             border-color: var(--primary-gold);
         }
 
-        .course-img {
-            height: 220px;
+        /* Hero card styling (Aari) */
+        .course-card.course-hero .course-img {
+            height: 320px;
             background: #ddd;
             width: 100%;
+            flex-shrink: 0;
         }
 
-        .course-content { padding: 35px; text-align: center; }
+        .course-card.course-hero .course-content {
+            padding: 45px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-        .course-title {
-            font-size: 1.4rem;
+        .course-card.course-hero .course-title {
+            font-size: 1.8rem;
             font-weight: 600;
             color: var(--charcoal);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .course-card.course-hero .course-price {
+            font-size: 2.2rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Regular card styling */
+        .course-img {
+            height: 200px;
+            background: #ddd;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .course-content { 
+            padding: 30px; 
+            text-align: center; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 12px;
             font-family: 'Playfair Display', serif;
         }
 
         .course-price {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary-gold);
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: 'Playfair Display', serif;
         }
 
@@ -641,6 +712,46 @@
 
             .course-card {
                 margin-bottom: 20px;
+            }
+
+            /* Bento Grid: Stack on mobile */
+            .courses-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                min-height: auto;
+            }
+
+            .course-card.course-hero {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .courses-grid-right {
+                grid-column: 1;
+                grid-row: 2;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .courses-grid-bottom {
+                grid-template-columns: 1fr;
+                grid-row: auto;
+            }
+
+            .course-card.course-hero .course-img {
+                height: 220px;
+            }
+
+            .course-card.course-hero .course-content {
+                padding: 35px;
+            }
+
+            .course-card.course-hero .course-title {
+                font-size: 1.4rem;
+            }
+
+            .course-card.course-hero .course-price {
+                font-size: 1.8rem;
             }
         }
         /* --- COUPON SECTION STYLES --- */
@@ -974,7 +1085,8 @@
             </div>
 
             <div class="courses-grid">
-                <div class="course-card" data-aos="fade-up">
+                <!-- Left Column: Hero Card (Aari) - Spans 2 rows -->
+                <div class="course-card course-hero" data-aos="fade-up">
                     <img src="https://placehold.co/400x250/FFD700/333?text=Aari+Embroidery" class="course-img" alt="Aari Work">
                     <div class="course-content">
                         <div class="course-title">Aari Hand Embroidery</div>
@@ -988,45 +1100,52 @@
                     </div>
                 </div>
 
-                <div class="course-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://placehold.co/400x250/FFD700/333?text=Machine+Embroidery" class="course-img" alt="Machine Embroidery">
-                    <div class="course-content">
-                        <div class="course-title">Machine Embroidery</div>
-                        <div class="course-price">₹4,000</div>
-                        <div class="course-details">
-                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                <!-- Right Column: Nested Grid -->
+                <div class="courses-grid-right">
+                    <!-- Top: Tailoring Advanced (wide) -->
+                    <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Advanced" class="course-img" alt="Tailoring Advanced">
+                        <div class="course-content">
+                            <div class="course-title">Tailoring Advanced</div>
+                            <div class="course-price">₹5,000</div>
+                            <div class="course-details">
+                                <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                                <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                                <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                            </div>
+                            <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Advanced%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
                         </div>
-                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Machine%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
                     </div>
-                </div>
 
-                <div class="course-card" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Basic" class="course-img" alt="Tailoring Basic">
-                    <div class="course-content">
-                        <div class="course-title">Tailoring Basic</div>
-                        <div class="course-price">₹5,000</div>
-                        <div class="course-details">
-                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                    <!-- Bottom: Machine and Basic side-by-side -->
+                    <div class="courses-grid-bottom">
+                        <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+                            <img src="https://placehold.co/400x250/FFD700/333?text=Machine+Embroidery" class="course-img" alt="Machine Embroidery">
+                            <div class="course-content">
+                                <div class="course-title">Machine Embroidery</div>
+                                <div class="course-price">₹4,000</div>
+                                <div class="course-details">
+                                    <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                                    <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                                    <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                                </div>
+                                <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Machine%20Embroidery%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                            </div>
                         </div>
-                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Basic%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
-                    </div>
-                </div>
 
-                <div class="course-card" data-aos="fade-up" data-aos-delay="600">
-                    <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Advanced" class="course-img" alt="Tailoring Advanced">
-                    <div class="course-content">
-                        <div class="course-title">Tailoring Advanced</div>
-                        <div class="course-price">₹5,000</div>
-                        <div class="course-details">
-                            <span><i class="far fa-clock"></i> 30 Days Duration</span>
-                            <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
-                            <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                        <div class="course-card" data-aos="fade-up" data-aos-delay="600">
+                            <img src="https://placehold.co/400x250/FFD700/333?text=Tailoring+Basic" class="course-img" alt="Tailoring Basic">
+                            <div class="course-content">
+                                <div class="course-title">Tailoring Basic</div>
+                                <div class="course-price">₹5,000</div>
+                                <div class="course-details">
+                                    <span><i class="far fa-clock"></i> 30 Days Duration</span>
+                                    <span><i class="fas fa-hourglass-half"></i> 2 Hrs / Day</span>
+                                    <span><i class="fas fa-users"></i> 3 Batches Available</span>
+                                </div>
+                                <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Basic%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
+                            </div>
                         </div>
-                        <a href="https://wa.me/919345074190?text=I%20am%20interested%20in%20Advanced%20Tailoring%20Course" class="btn btn-whatsapp" target="_blank">Enroll Now</a>
                     </div>
                 </div>
             </div>
