@@ -896,6 +896,18 @@
                 padding: 25px;
             }
         }
+        
+        /* --- VISIBILITY UTILITIES --- */
+/* By default (Desktop), hide mobile text */
+        .mobile-only { display: none; }
+        .desktop-only { display: inline; }
+
+/* On Mobile screens, switch them */
+        @media (max-width: 768px) {
+        .mobile-only { display: block; } /* Show "Swipe" text */
+        .desktop-only { display: none; } /* Hide Desktop terms */
+    }
+
     </style>
 </head>
 <body>
