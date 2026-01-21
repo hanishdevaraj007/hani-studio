@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hani Ladies Designer Studio | Aari & Tailoring Classes</title>
 
     <meta name="google-site-verification" content="E2t2JySF8K3zt-4ptI5TsMYxe_AdmfUZfEinD9YLEw8" />
@@ -51,7 +51,13 @@
             background-color: var(--cream-bg);
             font-weight: 400;
             overflow-x: hidden;
-        }
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden; /* CUTS off anything causing the side scroll */
+            position: relative; /* Locks the container */
+            margin: 0;
+            padding: 0;
+            }
 
         h1, h2, h3, h4, .section-title, .course-title, .offer-title, .founder-name {
             font-family: 'Playfair Display', serif;
@@ -187,9 +193,9 @@
             font-size: 1.3rem; 
             margin-bottom: 40px; 
             opacity: 0.95; 
-            font-weight: 300;
-            letter-spacing: 1px;
-            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 4px rgba(218, 250, 10, 0.3);
         }
         .hero-location {
             margin-top: 30px;
@@ -248,7 +254,7 @@
             color: var(--primary-gold);
             margin-bottom: 20px;
             transform: translateZ(30px);
-            animation: iconFloat 3s ease-in-out infinite;
+            animation: iconFloat 2s ease-in-out infinite;
         }
 
         @keyframes iconFloat {
@@ -938,7 +944,7 @@
             </a>
             
             <span class="hero-location" data-aos="fade-up" data-aos-delay="600">
-                <i class="fas fa-map-marker-alt"></i> 1st Floor, Above SSPA ILAI KADAI, Jothipuram, Mettupalayam Road, CBE-47
+                <i class="fas fa-map-marker-alt"></i> 562, 1st Floor, Above SSPA ILAI KADAI, Jothipuram, Mettupalayam Road, CBE-47
             </span>
         </div>
     </section>
@@ -1200,7 +1206,7 @@
                     </a>
 
                     <p><strong>Address:</strong><br>
-                    1st Floor, Above SSPA ILAI KADIA, Jothipuram,<br>
+                    562, 1st Floor, Above SSPA ILAI KADIA, Jothipuram,<br>
                     Mettupalayam Road, Coimbatore.</p>
                 </div>
 
