@@ -151,8 +151,8 @@ We're not just a training center — we're a community dedicated to transforming
 |----------|------|
 | 🌐 **Website** | [Visit Here](https://hanishdevaraj007.github.io/hani-studio/) |
 | 💬 **WhatsApp** | [+91 9345074190](https://wa.me/919345074190?text=Hi,%20I%20want%20to%20book%20a%20class%20or%20place%20an%20order) |
-| 📸 **Instagram** | [@p.krishnaveni](https://www.instagram.com/hani_ladies_designer/) |
-| 📍 **Location** | Jothipuram, Coimbatore |
+| 📸 **Instagram** | [hani_ladies_designer](https://www.instagram.com/hani_ladies_designer/) |
+| 📍 **Location** | Jothipuram, MTP Road, Coimbatore |
 
 ---
 
@@ -163,4 +163,5 @@ We're not just a training center — we're a community dedicated to transforming
 **Hani Ladies Designer Studio** © 2025 | All Rights Reserved
 
 </div>
+
 
