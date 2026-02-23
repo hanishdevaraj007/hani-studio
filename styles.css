@@ -25,6 +25,26 @@
     /* Spacing */
     --section-padding: 80px;
     --section-padding-desktop: 120px;
+
+    /* === FLUID TYPOGRAPHY ===
+       clamp(min, preferred, max)
+       min  : smallest size shown (never shrinks below this)
+       preferred: viewport-relative formula that scales linearly
+       max  : largest size shown (never grows above this)
+
+       Formula explanation for hero h1:
+         1.8rem  = minimum (320 px phones — readable without zooming)
+         5vw     = 5% of viewport width (scales 16px@320 → 25.6px@512)
+         3.5rem  = maximum (large desktops stay proportional)
+
+       Letter-spacing scales the same way:
+         0px on tiny phones (no wasted pixels), 3px on wide screens
+    */
+    --fluid-h1-size:        clamp(1.8rem,  5vw, 3.5rem);
+    --fluid-h1-desktop:     clamp(3rem,    5vw, 4rem);
+    --fluid-section-size:   clamp(1.6rem,  4.5vw, 3rem);
+    --fluid-letter-tight:   clamp(0px, 0.3vw, 1.5px);
+    --fluid-letter-heading: clamp(0px, 0.4vw, 2px);
 }
 
 /* ===== RESET & BASE ===== */
@@ -233,17 +253,29 @@ img {
 
 .section-title {
     text-align: center;
-    font-size: 2.2rem;
+    /*
+     * clamp(1.6rem, 4.5vw, 3rem)
+     *  — 1.6rem floor keeps text large enough at 320 px
+     *  — 4.5vw grows naturally with viewport width
+     *  — 3rem cap matches the old desktop override
+     * This replaces BOTH the mobile base and the 769px media-query override.
+     */
+    font-size: var(--fluid-section-size);
     color: var(--charcoal);
     margin-bottom: 15px;
     font-weight: 600;
-    letter-spacing: 2px;
-}
-
-@media (min-width: 769px) {
-    .section-title {
-        font-size: 3rem;
-    }
+    /*
+     * clamp(0px, 0.4vw, 2px)
+     *  — 0px on very small screens = no extra horizontal push that
+     *    forces letters off the line edge
+     *  — ramps up to 2px on wider screens for the premium spaced look
+     */
+    letter-spacing: var(--fluid-letter-heading);
+    /* Prevent mid-word line breaks */
+    word-break: normal;          /* Do NOT break arbitrary character positions */
+    overflow-wrap: break-word;   /* Allow break ONLY when a word would overflow */
+    hyphens: none;               /* No visible dashes — keeps the luxury feel  */
+    line-height: 1.25;           /* Comfortable multi-line wrap for long titles */
 }
 
 .section-subtitle {
@@ -442,18 +474,42 @@ img {
 }
 
 .hero-content h1 {
-    font-size: 2.5rem;
+    /*
+     * clamp(1.8rem, 5vw, 3.5rem) — mobile base
+     *  — 1.8rem: readable floor on 320 px (smallest iOS / Android)
+     *  — 5vw: scales ~16 px/320vw → ~25px/512vw naturally
+     *  — 3.5rem: caps growth so it doesn't overwhelm tablet layouts
+     * The 769 px override below bumps the max to 4rem on true desktops.
+     */
+    font-size: var(--fluid-h1-size);
     color: var(--primary-gold);
     margin-bottom: 25px;
     text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
+    /*
+     * clamp(0px, 0.3vw, 1.5px)
+     *  — 0 px on phones saves crucial horizontal space
+     *  — grows to 1.5 px on tablets / desktops for that spaced-out luxury feel
+     */
+    letter-spacing: var(--fluid-letter-tight);
     position: relative;
     z-index: 5;
+    /* Word break controls — these three together are the fix:
+       word-break: normal   → never split at arbitrary positions
+       overflow-wrap        → only breaks if word would overflow its box
+       hyphens: none        → no dashes (browser-inserted hyphens look cheap)
+    */
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;  /* iOS Safari */
+    line-height: 1.2;       /* Tighter leading for large display text */
 }
 
+/* On wider screens, allow the title to grow to the full 4rem maximum */
 @media (min-width: 769px) {
     .hero-content h1 {
-        font-size: 4rem;
+        font-size: var(--fluid-h1-desktop);
+        letter-spacing: 2px; /* Restore full letter-spacing on desktop */
     }
 }
 
